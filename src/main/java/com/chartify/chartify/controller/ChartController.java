@@ -2,6 +2,7 @@ package com.chartify.chartify.controller;
 
 
 import com.chartify.chartify.entity.ChartData;
+import com.chartify.chartify.model.Result;
 import com.chartify.chartify.service.ChartService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -18,7 +19,7 @@ public class ChartController {
      * @return
      */
     @PostMapping("/makeChartWithDate")
-    public String makeChartWithDate(@RequestBody ChartData chartData){
-        return chartService.processChartData(chartData) == null? "生成失败":"生成成功";
+    public Result makeChartWithDate(@RequestBody ChartData chartData){
+        return chartService.processChartData(chartData);
     }
 }

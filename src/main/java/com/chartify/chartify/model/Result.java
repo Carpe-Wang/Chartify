@@ -8,7 +8,14 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Data
 public class Result<T> {
-    private int statusCode;
+    private Boolean isSuccess;
     private String message;
     private T data;
+
+    //手动添加构造器，isSuccess为false情况下不需要data
+    public Result(Boolean isSuccess, String message) {
+        this.isSuccess = isSuccess;
+        this.message = message;
+        this.data = null; // 或者适合您使用的默认值
+    }
 }
