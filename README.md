@@ -8,7 +8,7 @@
 
 ### 结果，如下图
 >iVBORw0KGgoAAAANSUhEUgAAAfQAAAEsCAYAAAA1u0HIAABF ..........
-![img.png](img.png)
+![img.png](lib/firstResult.png)
 > 后续改成前端生成，不然太僵硬
 
 # 现在还是个demo!!!
