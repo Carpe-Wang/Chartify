@@ -33,23 +33,24 @@ public class ChartServiceImpl implements ChartService {
     }
 
     private Result validateChartData(ChartData chartData){
-        if (chartData.getX().isEmpty() || chartData.getY().isEmpty()) {
-            return new Result<>(false,"X轴或Y轴数据不能为空");
+        if (chartData == null || chartData.getChartDate() == null || chartData.getChartDate().isEmpty()) {
+            return new Result<>(false, "图表数据不能为空");
         }
-        if (chartData.getX().size() != chartData.getY().size()){
-            return new Result<>(false,"X轴或Y轴数据不一致");
+        for (Map.Entry<Integer, Integer> entry : chartData.getChartDate().entrySet()) {
+            if (entry.getKey() == null || entry.getValue() == null) {
+                return new Result<>(false, "图表数据中的键值对不能有空值");
+            }
         }
-        return new Result<>(true,"校验通过");
+        return new Result<>(true, "数据有效");
     }
 
     public Result generateChart(ChartData chartData) {
         XYDataset dataset = createDataset(chartData);
         JFreeChart chart = ChartFactory.createScatterPlot(
-                "Sample Chart",
-                "X-Axis",
-                "Y-Axis",
+                chartData.getTitle(),
+                chartData.getXAxisName(),
+                chartData.getYAxisName(),
                 dataset);
-
         // 图表样式定制...
         customizeChart(chart);
         return convertChartToBase64Image(chart);
@@ -77,8 +78,8 @@ public class ChartServiceImpl implements ChartService {
         XYSeriesCollection dataset = new XYSeriesCollection();
         XYSeries series = new XYSeries("Series1");
 
-        for (Map.Entry<String, Integer> entry : chartData.getX().entrySet()) {
-            series.add(entry.getValue(), chartData.getY().get(entry.getKey()));
+        for (Map.Entry<Integer, Integer> entry : chartData.getChartDate().entrySet()) {
+            series.add(entry.getKey(), entry.getValue());
         }
         dataset.addSeries(series);
         return dataset;

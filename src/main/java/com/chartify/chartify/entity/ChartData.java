@@ -11,9 +11,9 @@ import java.util.Map;
 @AllArgsConstructor
 @NoArgsConstructor
 public class ChartData {
-    private Map<String, Integer> x;    //存储X轴
-    private Map<String, Integer> y;    //存储Y轴
-
+    private Map<Integer, Integer> chartDate;    //用Map来映射X和Y轴
+    private String xAxisName;// x轴的Name
+    private String yAxisName;// y轴的Name
+    private String title;
     // TODO: 2023/12/7  加上一个枚举，用来判断图的形式，比如线形图，柱状图。
-
 }
