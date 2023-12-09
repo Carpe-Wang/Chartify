@@ -11,4 +11,10 @@
 ![img.png](lib/firstResult.png)
 > 后续改成前端生成，不然太僵硬
 
+### 
+
+> 后续规划
+* 做成控制台格式，用户可以注册登陆，每一个用户可以自定义自己的视图格式
+* 做一个sql解析器，类似select XX,YY from table自动检测生成数据
+* 团队的workspace
 # 现在还是个demo!!!
