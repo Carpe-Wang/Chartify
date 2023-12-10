@@ -54,4 +54,24 @@ public class UserServiceImpl implements UserService {
         }
         return new Result<>(true,"查询成功",userByUsername);
     }
+
+    @Override
+    public Result updateUser(UserData userData) {
+        if (userData == null){
+            return new Result<>(false,"userDate为空");
+        }
+        String username = userData.getUsername();
+        if (username == null || username.isBlank()){
+            return new Result<>(false,"username为空");
+        }
+        UserData userByUsername = userMapper.getUserByUsername(userData.getUsername());
+        if (userByUsername == null){
+            return new Result<>(false,"没有相关用户");
+        }
+        int result = userMapper.updateUser(userData);
+        if (result != 1){
+            return new Result<>(false,"更新失败");
+        }
+        return new Result<>(true,"更新成功");
+    }
 }
