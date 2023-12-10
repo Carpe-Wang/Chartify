@@ -19,18 +19,16 @@ public class UserController {
         return userService.createUser(user);
     }
 
-    @GetMapping("/getUserById/{username}")
-    public Result getUserByUsername(@PathVariable String username) {
-        return userService.getUserByUsername(username);
-    }
+
+//目前没想到用处，先不提供该接口了
+//    @GetMapping("/getUserById/{username}")
+//    public Result getUserByUsername(@PathVariable String username) {
+//        return userService.getUserByUsername(username);
+//    }
 
     @PostMapping("/updateUser")
     public Result updateUser(@RequestBody UserData userData) {
         return userService.updateUser(userData);
     }
-//
-//    @DeleteMapping("/deleteUser")
-//    public Result deleteUser(@RequestBody UserData) {
-//
-//    }
+
 }

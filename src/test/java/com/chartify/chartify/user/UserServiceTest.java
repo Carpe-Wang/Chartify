@@ -38,8 +38,8 @@ public class UserServiceTest {
     @BeforeEach
     public void setUp() {
         userData = new UserData();
-        userData.setUsername("caTestUser");
-        userData.setEmail("wangcarpe@example.com");
+        userData.setUsername("testUser");
+        userData.setEmail("wangcarpe@gmail.com");
         userData.setPassword(rawPassword);
     }
 
