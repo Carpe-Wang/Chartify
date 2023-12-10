@@ -30,6 +30,8 @@ public class UserServiceImpl implements UserService {
             return new Result<>(false, "插入失败，用户已经存在");
         }
         logger.info("createUser data is :{}",userData);
+        String encodedPassword = passwordEncoder.encode(userData.getPassword());
+        userData.setPassword(encodedPassword);
         try {
             int result = userMapper.createUser(userData);
             if (result == 1) {
@@ -57,21 +59,32 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public Result updateUser(UserData userData) {
-        if (userData == null){
-            return new Result<>(false,"userDate为空");
+        if (userData == null) {
+            return new Result<>(false, "userData 为空");
         }
         String username = userData.getUsername();
-        if (username == null || username.isBlank()){
-            return new Result<>(false,"username为空");
+        if (username == null || username.isBlank()) {
+            return new Result<>(false, "username 为空");
         }
-        UserData userByUsername = userMapper.getUserByUsername(userData.getUsername());
-        if (userByUsername == null){
-            return new Result<>(false,"没有相关用户");
+        // 检查用户是否存在
+        UserData existingUser = userMapper.getUserByUsername(username);
+        if (existingUser == null) {
+            return new Result<>(false, "没有相关用户");
         }
-        int result = userMapper.updateUser(userData);
-        if (result != 1){
-            return new Result<>(false,"更新失败");
+        // 加密密码
+        String encodedPassword = passwordEncoder.encode(userData.getPassword());
+        userData.setPassword(encodedPassword);
+        try {
+            int result = userMapper.updateUser(userData);
+            if (result == 1) {
+                return new Result<>(true, "更新成功");
+            } else {
+                return new Result<>(false, "更新失败");
+            }
+        } catch (Exception e) {
+            logger.error("Error updating user: ", e);
+            return new Result<>(false, "更新失败，发生异常");
         }
-        return new Result<>(true,"更新成功");
     }
+
 }
