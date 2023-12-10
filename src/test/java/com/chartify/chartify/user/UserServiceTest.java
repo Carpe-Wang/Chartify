@@ -60,4 +60,10 @@ public class UserServiceTest {
         System.out.println(userByUsername);
         assertEquals(true , userByUsername.getIsSuccess());
     }
+
+    @Test
+    public void testUpdateUser(){
+        Result result = userService.updateUser(userData);
+        assertEquals(true , result.getIsSuccess());
+    }
 }
