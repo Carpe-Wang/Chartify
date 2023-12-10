@@ -1,6 +1,7 @@
 package com.chartify.chartify.mapper;
 
 import com.chartify.chartify.entity.UserData;
+import com.chartify.chartify.service.impl.UserServiceImpl;
 import org.apache.ibatis.annotations.InsertProvider;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.jdbc.SQL;
@@ -14,17 +15,16 @@ public interface UserMapper {
 
     class UserSqlProvider {
         private static final Logger logger = LoggerFactory.getLogger(UserSqlProvider.class);
+
         public String createUser(final UserData user) {
-            logger.info("logging user data before insert, userDate is:{}",user);
+            logger.info("insert userData is:{}" , user);
             return new SQL() {{
                 INSERT_INTO("chartify_user");
-                VALUES("id", "#{id}");
                 VALUES("username", "#{username}");
                 VALUES("email", "#{email}");
                 VALUES("password", "#{password}");
                 VALUES("created_time", "CURRENT_TIMESTAMP");
                 VALUES("updated_time", "CURRENT_TIMESTAMP");
-                VALUES("user_id","userId");
             }}.toString();
         }
     }
