@@ -53,4 +53,11 @@ public class UserServiceTest {
         // 由于是集成测试，数据库应该会有新记录
         // ... 这里可以添加检查数据库中是否真的有新记录的代码·
     }
+
+    @Test
+    public void testGetUserByUsername(){
+        Result userByUsername = userService.getUserByUsername(userData.getUsername());
+        System.out.println(userByUsername);
+        assertEquals(true , userByUsername.getIsSuccess());
+    }
 }

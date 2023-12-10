@@ -19,10 +19,10 @@ public class UserController {
         return userService.createUser(user);
     }
 
-//    @GetMapping("/getUserById}")
-//    public Result getUserById(@PathVariable Long id) {
-//
-//    }
+    @GetMapping("/getUserById/{username}")
+    public Result getUserByUsername(@PathVariable String username) {
+        return userService.getUserByUsername(username);
+    }
 //
 //    @PostMapping("/updateUser")
 //    public Result updateUser(@RequestBody UserData) {
