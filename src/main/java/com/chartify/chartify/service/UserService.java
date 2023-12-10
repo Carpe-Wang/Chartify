@@ -7,4 +7,6 @@ public interface UserService {
     Result createUser(UserData userData);
 
     Result getUserByUsername(String username);
+
+    Result updateUser(UserData userData);
 }
