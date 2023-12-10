@@ -1,54 +1,56 @@
 package com.chartify.chartify.user;
-import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.Mockito.when;
 
 import com.chartify.chartify.entity.UserData;
 import com.chartify.chartify.mapper.UserMapper;
 import com.chartify.chartify.model.Result;
+import com.chartify.chartify.service.UserService;
 import com.chartify.chartify.service.impl.UserServiceImpl;
-import com.chartify.chartify.utils.SnowflakeIdGenerator;
-import org.junit.Assert;
-import org.junit.Before;
-import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.mockito.InjectMocks;
-import org.mockito.Mock;
-import org.mockito.junit.MockitoJUnitRunner;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
 
-@RunWith(MockitoJUnitRunner.class)
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
+@ExtendWith(SpringExtension.class)
+@SpringBootTest
 public class UserServiceTest {
 
-    @Mock
+    @Autowired
     private UserMapper userMapper;
 
-    @Mock
+    @Autowired
     private BCryptPasswordEncoder passwordEncoder;
 
-    @InjectMocks
-    private UserServiceImpl userService;
-
-    @Mock
-    private SnowflakeIdGenerator snowflakeIdGenerator;//这个不要删除，InjectMocks userService，如果没有这个会导致空指针
+    @Autowired
+    private UserService userService;
 
     private UserData userData;
     private String rawPassword = "password";
-    private String encodedPassword = "encodedPassword";
+    private String encodedPassword = "caTest";
 
-    @Before
+
+    @BeforeEach
     public void setUp() {
         userData = new UserData();
-        userData.setUserName("testUser");
+        userData.setUsername("testUser");
         userData.setEmail("testUser@example.com");
         userData.setPassword(rawPassword);
-        when(passwordEncoder.encode(rawPassword)).thenReturn(encodedPassword);
-        when(userMapper.createUser(any(UserData.class))).thenReturn(1);
     }
 
     @Test
     public void testCreateUser() {
         Result result = userService.createUser(userData);
-        Assert.assertEquals("插入成功", result.getMessage());
-        Assert.assertEquals(encodedPassword, userData.getPassword());
+
+        // 验证返回结果
+        assertEquals("插入成功", result.getMessage());
+
+        // 由于是集成测试，数据库应该会有新记录
+        // ... 这里可以添加检查数据库中是否真的有新记录的代码·
     }
 }

@@ -10,7 +10,7 @@ DB_PASSWORD="your_password"  # 数据库用户的密码
 
 # 创建 'chartify_user' 表格的SQL命令
 SQL_COMMAND="
-create table chartify.chartify_user
+create table chartify_user
 (
     id           serial
         primary key,
@@ -19,8 +19,7 @@ create table chartify.chartify_user
     password     varchar(255) not null,
     created_time timestamp with time zone default CURRENT_TIMESTAMP,
     updated_time timestamp with time zone default CURRENT_TIMESTAMP,
-    user_id      varchar(100) not null,
-    unique (username, email, user_id)
+    unique (username, email)
 );
 "
 

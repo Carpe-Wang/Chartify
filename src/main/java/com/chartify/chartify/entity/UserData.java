@@ -10,10 +10,10 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @Data
 public class UserData {
-    private String userName;
+    private String username;
     private String password;
     private String email;
     private LocalDateTime createdTime;
     private LocalDateTime updatedTime;
-    private String userId;
+
 }
