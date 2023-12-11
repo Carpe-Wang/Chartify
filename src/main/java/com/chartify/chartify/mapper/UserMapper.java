@@ -13,11 +13,12 @@ public interface UserMapper {
     @InsertProvider(type = UserSqlProvider.class, method = "createUser")
     int createUser(UserData user);
 
-    @Select("SELECT username, email, password FROM chartify_user WHERE username = #{username}")
+    @Select("SELECT username, email, password, id FROM chartify_user WHERE username = #{username}")
     @Results({
             @Result(property = "username", column = "username"),
             @Result(property = "email", column = "email"),
-            @Result(property = "password", column = "password")
+            @Result(property = "password", column = "password"),
+            @Result(property = "id", column = "id")
     })
     UserData getUserByUsername(String username);
 
