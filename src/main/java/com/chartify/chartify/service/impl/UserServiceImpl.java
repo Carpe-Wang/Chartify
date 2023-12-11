@@ -4,6 +4,7 @@ import com.chartify.chartify.entity.UserData;
 import com.chartify.chartify.mapper.UserMapper;
 import com.chartify.chartify.model.Result;
 import com.chartify.chartify.service.UserService;
+import com.chartify.chartify.utils.LogUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,7 +30,7 @@ public class UserServiceImpl implements UserService {
         if (userByUsername != null ){
             return new Result<>(false, "插入失败，用户已经存在");
         }
-        logger.info("createUser data is :{}",userData);
+        LogUtil.info(logger,"createUser data is :{}", userData);
         String encodedPassword = passwordEncoder.encode(userData.getPassword());
         userData.setPassword(encodedPassword);
         try {
