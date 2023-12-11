@@ -2,6 +2,7 @@ package com.chartify.chartify.mapper;
 
 import com.chartify.chartify.entity.UserData;
 import com.chartify.chartify.service.impl.UserServiceImpl;
+import com.chartify.chartify.utils.LogUtil;
 import org.apache.ibatis.annotations.*;
 import org.apache.ibatis.jdbc.SQL;
 import org.slf4j.Logger;
@@ -27,7 +28,7 @@ public interface UserMapper {
         private static final Logger logger = LoggerFactory.getLogger(UserSqlProvider.class);
 
         public String createUser(final UserData user) {
-            logger.info("insert userData is:{}", user);
+            LogUtil.info(logger, "insert userData is:{}", user);
             return new SQL() {{
                 INSERT_INTO("chartify_user");
                 VALUES("username", "#{username}");
