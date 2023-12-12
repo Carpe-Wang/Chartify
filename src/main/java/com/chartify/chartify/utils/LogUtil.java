@@ -10,7 +10,6 @@ public class LogUtil {
      * 打印debug级别普通格式日志  ,如果带参数用{0},{1},..替换
      * 如：
      * LogUtil.error(logger,e,"hello,{0},这里很sorry的发生了{1}异常",亲,数据库操作);
-     * ==hello,亲,这里很sorry的发生了数据库操作异常
      *
      * @param logger
      * @param msg
@@ -32,7 +31,6 @@ public class LogUtil {
      * 打印info级别普通格式日志,如果带参数用{0},{1},..替换
      * 如：
      * LogUtil.error(logger,e,"hello,{0},这里很sorry的发生了{1}异常",亲,数据库操作);
-     * ==hello,亲,这里很sorry的发生了数据库操作异常
      *
      * @param logger
      * @param msg
@@ -68,7 +66,6 @@ public class LogUtil {
      * 打印error级别带异常的格式化日志,如果带参数用{0},{1},..替换
      * 如：
      * LogUtil.error(logger,e,"hello,{0},这里很sorry的发生了{1}异常",亲,数据库操作);
-     * ==hello,亲,这里很sorry的发生了数据库操作异常
      *
      * @param logger
      * @param msg
@@ -89,9 +86,7 @@ public class LogUtil {
     /**
      * 打印warn级别普通格式日志,如果带参数用{0},{1},..替换
      * 如：
-     * LogUtil.error(logger,e,"hello,{0},这里很sorry的发生了{1}异常",亲,数据库操作);
-     * ==hello,亲,这里很sorry的发生了数据库操作异常
-     *
+     * LogUtil.error(logger,e,"hello,{0},这里很sorry的发生了{1}异常",亲,数据库操作);*
      * @param logger
      * @param msg
      */
@@ -109,9 +104,7 @@ public class LogUtil {
     /**
      * 打印error级别带异常的格式化日志,如果带参数用{0},{1},..替换
      * 如：
-     * LogUtil.error(logger,e,"hello,{0},这里很sorry的发生了{1}异常",亲,数据库操作);
-     * ==hello,亲,这里很sorry的发生了数据库操作异常
-     *
+     * LogUtil.error(logger,e,"hello,{0},这里很sorry的发生了{1}异常",亲,数据库操作);*
      * @param logger
      * @param e
      * @param msg
