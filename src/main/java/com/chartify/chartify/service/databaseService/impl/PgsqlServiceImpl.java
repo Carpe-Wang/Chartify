@@ -1,5 +1,6 @@
 package com.chartify.chartify.service.databaseService.impl;
 
+import com.chartify.chartify.entity.sqlEntity.DatabaseCredentials;
 import com.chartify.chartify.service.databaseService.DatabaseService;
 
 import java.sql.Connection;
@@ -9,7 +10,7 @@ import java.util.Map;
 
 public class PgsqlServiceImpl implements DatabaseService {
     @Override
-    public Connection connect(String address, String username, String password) throws SQLException {
+    public Connection connect(DatabaseCredentials databaseCredentials) throws SQLException {
         return null;
     }
 
