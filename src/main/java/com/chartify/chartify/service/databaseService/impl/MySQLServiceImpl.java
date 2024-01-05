@@ -3,7 +3,6 @@ package com.chartify.chartify.service.databaseService.impl;
 import com.alibaba.fastjson.JSONObject;
 import com.chartify.chartify.entity.sqlEntity.DatabaseCredentials;
 import com.chartify.chartify.service.databaseService.DatabaseService;
-import com.chartify.chartify.service.impl.UserServiceImpl;
 import com.chartify.chartify.utils.LogUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -33,6 +32,7 @@ public class MySQLServiceImpl implements DatabaseService {
         } catch (SQLException e) {
             LogUtil.info(logger,"连接失败,具体参数为:{0}。请重新检查" , JSONObject.toJSONString(databaseCredentials));
             e.printStackTrace();
+            throw e;
         }
         return connection;
     }
